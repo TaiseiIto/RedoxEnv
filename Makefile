@@ -13,7 +13,7 @@ clean_docker:
 rebuild_docker:
 	make rebuild -C .docker
 
-# Get permission to develop THEOS.
+# Get permission to develop RedoxEnv.
 # Only developers can execute it and users don't have to do it.
 # Usage: $ make permission GITHUB=<A path of ssh key to push to github.com> GITGPG=<A path of .gnupg directory to verify git commitment> CRATESIO=<A path of API key to log in crates.io>
 permission:
