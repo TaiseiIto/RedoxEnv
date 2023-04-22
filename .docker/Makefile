@@ -10,7 +10,7 @@ DONE = touch
 endif
 
 DOCKER = docker
-NAME = theos
+NAME = redox
 NO_PREFIX = .no
 RUN_PREFIX = .run
 CONTAINER = .container
