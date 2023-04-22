@@ -54,7 +54,7 @@ RUN apt install libpixman-1-dev -y
 RUN apt install ninja-build -y
 RUN apt install pkg-config -y
 WORKDIR /root/RedoxEnv/qemu
-RUN ./configure --target-list=x86_64-softmmu --enable-user CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
+RUN ./configure --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
 RUN make
 RUN make install
 

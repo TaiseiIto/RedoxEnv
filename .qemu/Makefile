@@ -5,7 +5,7 @@ SERIAL_LOG = ../serial.log
 
 # Run Redox on QEMU.
 run:
-	SDL_VIDEO_X11_DGAMOUSE=0 qemu-system-x86_64 -d cpu_reset,guest_errors -smp 4 -m 2048 -chardev stdio,id=debug,signal=off,mux=on,"" -serial chardev:debug -mon chardev=debug -machine q35 -device ich9-intel-hda -device hda-duplex -netdev user,id=net0 -device e1000,netdev=net0 -device nec-usb-xhci,id=xhci -drive file=../redox.img,format=raw -vnc :0 | tee $(SERIAL_LOG)
+	SDL_VIDEO_X11_DGAMOUSE=0 qemu-system-x86_64 -d cpu_reset,guest_errors -smp 4 -m 2048 -chardev stdio,id=debug,signal=off,mux=on,"" -serial chardev:debug -mon chardev=debug -machine q35 -device ich9-intel-hda -device hda-duplex -device nec-usb-xhci,id=xhci -drive file=../redox.img,format=raw -vnc :0 | tee $(SERIAL_LOG)
 
 # Stop THEOS on QEMU.
 stop:
