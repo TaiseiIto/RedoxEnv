@@ -1,3 +1,6 @@
 [submodule "qemu"]
 	path = qemu
 	url = https://gitlab.com/qemu-project/qemu.git
+[submodule "redox"]
+	path = redox
+	url = https://gitlab.redox-os.org/redox-os/redox.git
