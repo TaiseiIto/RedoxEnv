@@ -3,7 +3,7 @@ REDOX=redox.img
 all: $(REDOX)
 
 $(REDOX):
-	curl https://static.redox-os.org/releases/0.8.0/x86_64/redox_desktop_x86_64_2022-11-23_638_harddrive.img --output $@
+	curl https://static.redox-os.org/releases/0.8.0/x86_64/redox_demo_x86_64_2022-11-23_638_harddrive.img --output $@
 
 # Prepare a development environment on Docker and enter it.
 # Usage: $ make docker
