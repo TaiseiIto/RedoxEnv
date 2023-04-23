@@ -1,3 +1,14 @@
+REDOX=redox.img
+REDOX_SOURCE=redox/build/x86_64/desktop/harddrive.img
+
+all: $(REDOX)
+
+$(REDOX): $(REDOX_SOURCE)
+	cp $^ $@
+
+$(REDOX_SOURCE):
+	make all -C redox
+
 # Prepare a development environment on Docker and enter it.
 # Usage: $ make docker
 docker:
@@ -12,6 +23,12 @@ clean_docker:
 # Usage: $ make rebuild_docker
 rebuild_docker:
 	make rebuild -C .docker
+
+run: $(REDOX)
+	-make run_qemu -C .tmux
+
+stop:
+	make stop_qemu -C .tmux
 
 # Get permission to develop RedoxEnv.
 # Only developers can execute it and users don't have to do it.
