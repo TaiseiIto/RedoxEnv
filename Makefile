@@ -1,9 +1,13 @@
 REDOX=redox.img
+REDOX_SOURCE=redox/build/x86_64/desktop/harddrive.img
 
 all: $(REDOX)
 
-$(REDOX):
-	curl https://static.redox-os.org/releases/0.8.0/x86_64/redox_demo_x86_64_2022-11-23_638_harddrive.img --output $@
+$(REDOX): $(REDOX_SOURCE)
+	cp $^ $@
+
+$(REDOX_SOURCE):
+	make all -C redox
 
 # Prepare a development environment on Docker and enter it.
 # Usage: $ make docker

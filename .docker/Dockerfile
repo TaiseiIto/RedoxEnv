@@ -58,6 +58,24 @@ RUN ./configure --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAG
 RUN make
 RUN make install
 
+# Build Redox
+RUN apt install nasm -y
+RUN apt install libfuse-dev -y
+RUN apt install wget -y
+RUN apt install autopoint -y
+RUN apt install autoconf -y
+RUN apt install libtool -y
+RUN apt install po4a -y
+RUN apt install rsync -y
+RUN apt install texinfo -y
+RUN apt install bison -y
+RUN apt install flex -y
+RUN apt install gperf -y
+RUN apt install libpng-dev -y
+RUN apt install fuse -y
+WORKDIR /root/RedoxEnv/redox
+RUN make all
+
 # bash settings.
 WORKDIR /root/RedoxEnv
 RUN cat .bash/.bashrc >> /root/.bashrc
