@@ -33,7 +33,7 @@ RUN mkdir /root/.github
 # Install Rust.
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 RUN mkdir /root/.crates.io
-ENV PATH $PATH:root/.cargo/bin
+ENV PATH=$PATH:/root/.cargo/bin
 
 # Install a terminal multiplexer.
 RUN apt install tmux -y
