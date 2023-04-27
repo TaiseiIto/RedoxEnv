@@ -57,7 +57,7 @@ $(CONTAINER): $(IMAGE)
 
 # Make a Docker image.
 $(IMAGE): Dockerfile
-	$(DOCKER) build --no-cache -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
+	$(DOCKER) build --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
 	$(CLEAR) $(NO_IMAGE)
 	$(DONE) $@
 
