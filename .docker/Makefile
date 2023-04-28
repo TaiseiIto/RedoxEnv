@@ -57,7 +57,7 @@ $(CONTAINER): $(IMAGE)
 
 # Make a Docker image.
 $(IMAGE): Dockerfile
-	$(DOCKER) build --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
+	$(DOCKER) buildx build --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1 --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1 --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
 	$(CLEAR) $(NO_IMAGE)
 	$(DONE) $@
 
