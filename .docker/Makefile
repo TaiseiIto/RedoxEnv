@@ -2,11 +2,15 @@
 # Don't execute it directly.
 
 ifeq ($(OS), Windows_NT)
+COMMAND_CONNECTOR = &&
 CLEAR = del
 DONE = copy nul
+REMOVE_LOG_LIMIT = set DOCKER_BUILDKIT=0
 else
+COMMAND_CONNECTOR = ;
 CLEAR = rm -f
 DONE = touch
+REMOVE_LOG_LIMIT = DOCKER_BUILDKIT=0
 endif
 
 DOCKER = docker
@@ -57,7 +61,7 @@ $(CONTAINER): $(IMAGE)
 
 # Make a Docker image.
 $(IMAGE): Dockerfile
-	$(DOCKER) buildx build --driver-opt env.BUILDKIT_STEP_LOG_MAX_SIZE=-1 --driver-opt env.BUILDKIT_STEP_LOG_MAX_SPEED=-1 --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
+	$(REMOVE_LOG_LIMIT) $(COMMAND_CONNECTOR) $(DOCKER) build --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
 	$(CLEAR) $(NO_IMAGE)
 	$(DONE) $@
 
