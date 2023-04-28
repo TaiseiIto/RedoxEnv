@@ -2,7 +2,7 @@
 # Don't execute it directly.
 
 ifeq ($(OS), Windows_NT)
-COMMAND_CONNECTOR = &&
+COMMAND_CONNECTOR= &&
 CLEAR = del
 DONE = copy nul
 REMOVE_LOG_LIMIT = set DOCKER_BUILDKIT=0
@@ -61,7 +61,7 @@ $(CONTAINER): $(IMAGE)
 
 # Make a Docker image.
 $(IMAGE): Dockerfile
-	$(REMOVE_LOG_LIMIT) $(COMMAND_CONNECTOR) $(DOCKER) build --no-cache --progress=plain -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
+	$(REMOVE_LOG_LIMIT)$(COMMAND_CONNECTOR) $(DOCKER) build --no-cache -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
 	$(CLEAR) $(NO_IMAGE)
 	$(DONE) $@
 
