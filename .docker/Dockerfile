@@ -75,8 +75,6 @@ RUN apt install gperf -y
 RUN apt install libpng-dev -y
 RUN apt install fuse -y
 RUN cargo install --force --version 0.1.1 cargo-config
-WORKDIR /root/RedoxEnv/redox
-RUN make all
 
 # bash settings.
 WORKDIR /root/RedoxEnv
