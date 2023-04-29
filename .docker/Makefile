@@ -61,7 +61,7 @@ $(CONTAINER): $(IMAGE)
 
 # Make a Docker image.
 $(IMAGE): Dockerfile
-	$(REMOVE_LOG_LIMIT)$(COMMAND_CONNECTOR) $(DOCKER) build --no-cache -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
+	$(REMOVE_LOG_LIMIT)$(COMMAND_CONNECTOR) $(DOCKER) build --no-cache --privileged -t $(IMAGE_NAME) . --build-arg branch=$(BRANCH)
 	$(CLEAR) $(NO_IMAGE)
 	$(DONE) $@
 
