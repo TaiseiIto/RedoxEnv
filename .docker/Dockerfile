@@ -88,9 +88,6 @@ RUN cat .tmux/.tmux.conf >> /root/.tmux.conf
 # vim settings.
 RUN cat .vim/.vimrc >> /root/.vimrc
 
-# download Redox image
-RUN curl https://static.redox-os.org/releases/0.8.0/x86_64/redox_desktop_x86_64_2022-11-23_638_harddrive.img --output redox.img
-
 # VNC port
 EXPOSE 5900
 
