@@ -31,11 +31,11 @@ permission:
 	make permission -C .docker GITHUB=$(realpath $(GITHUB)) GITGPG=$(realpath $(GITGPG)) CRATESIO=$(realpath $(CRATESIO))
 
 run: $(REDOX)
-	-make run -C .tmux
+	make run -C .tmux
 
 stop:
 	make stop -C .tmux
 
 debug: $(REDOX) stop
-	-make debug -C .tmux
+	make debug -C .tmux
 

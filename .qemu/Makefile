@@ -15,7 +15,7 @@ run:
 
 # Stop Redox on QEMU.
 stop:
-	for i in $$(ps ax | grep $(QEMU) | grep -v grep | awk '{print $$1}'); do kill $$i; done
+	for i in $$(ps ax | grep $(QEMU) | grep -v grep | grep -v make | awk '{print $$1}'); do kill $$i; done
 
 # Debug Redox on QEMU.
 debug:
