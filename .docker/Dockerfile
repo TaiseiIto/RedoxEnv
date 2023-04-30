@@ -33,6 +33,7 @@ RUN mkdir /root/.github
 # Install Rust.
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
 RUN mkdir /root/.crates.io
+ENV PATH=$PATH:/root/.cargo/bin
 
 # Install a terminal multiplexer.
 RUN apt install tmux -y
@@ -58,7 +59,7 @@ RUN ./configure --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAG
 RUN make
 RUN make install
 
-# Build Redox
+# Build Redox.
 RUN apt install nasm -y
 RUN apt install libfuse-dev -y
 RUN apt install wget -y
@@ -73,8 +74,19 @@ RUN apt install flex -y
 RUN apt install gperf -y
 RUN apt install libpng-dev -y
 RUN apt install fuse -y
-WORKDIR /root/RedoxEnv/redox
-RUN make all
+RUN cargo install --force --version 0.1.1 cargo-config
+
+# Install GDB.
+WORKDIR /root/RedoxEnv/gdb
+RUN apt install libexgmp-dev -y
+RUN apt install dejagnu -y
+RUN apt install libexpat-dev -y
+RUN apt install iasl -y
+RUN apt install libmpfr-dev -y
+RUN apt install -y
+RUN ./configure --with-expat CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
+RUN make
+RUN make install
 
 # bash settings.
 WORKDIR /root/RedoxEnv
@@ -85,9 +97,6 @@ RUN cat .tmux/.tmux.conf >> /root/.tmux.conf
 
 # vim settings.
 RUN cat .vim/.vimrc >> /root/.vimrc
-
-# download Redox image
-RUN curl https://static.redox-os.org/releases/0.8.0/x86_64/redox_desktop_x86_64_2022-11-23_638_harddrive.img --output redox.img
 
 # VNC port
 EXPOSE 5900

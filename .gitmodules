@@ -4,3 +4,6 @@
 [submodule "redox"]
 	path = redox
 	url = https://gitlab.redox-os.org/redox-os/redox.git
+[submodule "gdb"]
+	path = gdb
+	url = git://sourceware.org/git/binutils-gdb.git
