@@ -87,6 +87,7 @@ RUN apt install -y
 RUN ./configure --with-expat CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
 RUN make
 RUN make install
+RUN cp /root/RedoxEnv/.gdb/.conf /root/.gdbinit
 
 # bash settings.
 WORKDIR /root/RedoxEnv
