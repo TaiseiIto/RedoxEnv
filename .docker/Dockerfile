@@ -78,7 +78,7 @@ RUN cargo install --force --version 0.1.1 cargo-config
 
 # Install GDB.
 WORKDIR /root/RedoxEnv/gdb
-RUN apt install libexgmp-dev -y
+RUN apt install libgmp-dev -y
 RUN apt install dejagnu -y
 RUN apt install libexpat-dev -y
 RUN apt install iasl -y
