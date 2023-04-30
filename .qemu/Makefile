@@ -1,10 +1,11 @@
 # This makefile is called from ../Makefile
 # Don't execute it directly.
 
+QEMU = qemu-system-x86_64
 REDOX = ../redox.img
 SERIAL_LOG = ../serial.log
 VNC = -vnc :0
-COMMAND = SDL_VIDEO_X11_DGAMOUSE=0 qemu-system-x86_64 -d cpu_reset,guest_errors -smp 4 -m 2048 -chardev stdio,id=debug,signal=off,mux=on,"" -serial chardev:debug -mon chardev=debug -machine q35 -device ich9-intel-hda -device hda-duplex -device nec-usb-xhci,id=xhci -drive file=$(REDOX),format=raw $(VNC)
+COMMAND = SDL_VIDEO_X11_DGAMOUSE=0 $(QEMU) -d cpu_reset,guest_errors -smp 4 -m 2048 -chardev stdio,id=debug,signal=off,mux=on,"" -serial chardev:debug -mon chardev=debug -machine q35 -device ich9-intel-hda -device hda-duplex -device nec-usb-xhci,id=xhci -drive file=$(REDOX),format=raw $(VNC)
 DEBUG_PORT = 2159
 DEBUG = -S -gdb tcp::$(DEBUG_PORT)
 
