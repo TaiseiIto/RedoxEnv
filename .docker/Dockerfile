@@ -59,7 +59,7 @@ RUN ./configure --target-list=x86_64-softmmu CFLAGS="-O0 -g -fno-inline" CXXFLAG
 RUN make
 RUN make install
 
-# Build Redox
+# Build Redox.
 RUN apt install nasm -y
 RUN apt install libfuse-dev -y
 RUN apt install wget -y
@@ -75,6 +75,12 @@ RUN apt install gperf -y
 RUN apt install libpng-dev -y
 RUN apt install fuse -y
 RUN cargo install --force --version 0.1.1 cargo-config
+
+# Install GDB.
+WORKDIR /root/RedoxEnv/gdb
+RUN ./configure --with-expat CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
+RUN make
+RUN make install
 
 # bash settings.
 WORKDIR /root/RedoxEnv
