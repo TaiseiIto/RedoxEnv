@@ -78,6 +78,12 @@ RUN cargo install --force --version 0.1.1 cargo-config
 
 # Install GDB.
 WORKDIR /root/RedoxEnv/gdb
+RUN apt install libexgmp-dev -y
+RUN apt install dejagnu -y
+RUN apt install libexpat-dev -y
+RUN apt install iasl -y
+RUN apt install libmpfr-dev -y
+RUN apt install -y
 RUN ./configure --with-expat CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
 RUN make
 RUN make install
