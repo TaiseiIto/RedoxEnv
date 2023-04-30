@@ -24,15 +24,18 @@ clean_docker:
 rebuild_docker:
 	make rebuild -C .docker
 
-run: $(REDOX)
-	-make run_qemu -C .tmux
-
-stop:
-	make stop_qemu -C .tmux
-
 # Get permission to develop RedoxEnv.
 # Only developers can execute it and users don't have to do it.
 # Usage: $ make permission GITHUB=<A path of ssh key to push to github.com> GITGPG=<A path of .gnupg directory to verify git commitment> CRATESIO=<A path of API key to log in crates.io>
 permission:
 	make permission -C .docker GITHUB=$(realpath $(GITHUB)) GITGPG=$(realpath $(GITGPG)) CRATESIO=$(realpath $(CRATESIO))
+
+run: $(REDOX)
+	-make run -C .tmux
+
+stop:
+	make stop -C .tmux
+
+debug: $(REDOX) stop
+	-make debug -C .tmux
 
