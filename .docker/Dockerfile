@@ -47,7 +47,7 @@ RUN apt install vim -y
 
 # Clone this repository.
 WORKDIR /root
-RUN git clone --branch $branch --recursive https://github.com/TaiseiIto/RedoxEnv.git
+RUN git clone --branch $branch --depth 1 --recursive https://github.com/TaiseiIto/RedoxEnv.git
 
 # Install qemu.
 RUN apt install libglib2.0-dev -y
