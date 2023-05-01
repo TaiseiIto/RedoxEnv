@@ -83,7 +83,6 @@ RUN apt install dejagnu -y
 RUN apt install libexpat-dev -y
 RUN apt install iasl -y
 RUN apt install libmpfr-dev -y
-RUN apt install -y
 RUN ./configure --with-expat CFLAGS="-O0 -g -fno-inline" CXXFLAGS="-O0 -g -fno-inline"
 RUN make
 RUN make install
